@@ -32,5 +32,5 @@ public:
     double getSalary();
     void setSalary(double sal);
     void printRecord();
-    CustomerList *getCustomerList();
+    CustomerList *getCustomerList(); // returns the pointer to the EmployeeRecord's CustomerList object
 };

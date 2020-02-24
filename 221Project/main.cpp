@@ -9,7 +9,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <iomanip>
-#include <string>
 #include "EmployeeRecord.h"
 #include "Store.h"
 

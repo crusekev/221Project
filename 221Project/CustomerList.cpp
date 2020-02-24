@@ -9,10 +9,13 @@
 #include "CustomerList.h"
 #include "EmployeeRecord.h"
 
+// constructor
 CustomerList::CustomerList() {
     std::cout << "Function reached 1\n";
     m_pHead = NULL;
 }
+
+// destructor
 CustomerList::~CustomerList() {
     std::cout << "Function reached 2\n";
     Store *temp;
@@ -23,6 +26,7 @@ CustomerList::~CustomerList() {
     }
 }
 
+// this function takes a pointer to a Store object which already contains all data on a store. It inserts the Store object into the linked list in order, sorted by the store ID. It returns TRUE if the Store was successfully added to the list.
 bool CustomerList::addStore(Store *s) {
     std::cout << "Function reached 3\n";
     Store *temp, *back, *newNode;
@@ -50,6 +54,7 @@ bool CustomerList::addStore(Store *s) {
     return true;
 }
 
+// this function takes an integer store ID as an argument. It searches the list, locates the Store object with that ID if one is present, removes it from the list and returns the Store object. The function returns NULL if it failed to find the Store in the list.
 Store *CustomerList::removeStore(int ID) {
     std::cout << "Function reached 4\n";
     Store *temp, *back;
@@ -74,6 +79,7 @@ Store *CustomerList::removeStore(int ID) {
     }
 }
 
+// this function takes an integer store ID. It searches the list, locates the Store object, if present, and returns a pointer to the Store object. It returns NULL if the Store was not found in the list.
 Store *CustomerList::getStore(int ID) {
     std::cout << "Function reached 5\n";
     Store *temp;
@@ -93,6 +99,7 @@ Store *CustomerList::getStore(int ID) {
     }
 }
 
+// this function takes a list of arguments defining changes in the store data. The first argument gives the store ID. The remaining arguments are char arrays containing the new data on that store. The function searches the list and locates the store then updates all data for that store. The function returns TRUE if it successfully updated the data or FALSE if it failed to find the store.
 bool CustomerList::updateStore(int ID, char *name, char *addr, char *city, char *st, char *zip) {
     std::cout << "Function reached 6\n";
     Store *temp;
@@ -116,6 +123,7 @@ bool CustomerList::updateStore(int ID, char *name, char *addr, char *city, char 
     return true;
 }
 
+// this function prints all data on each store in the list
 void CustomerList::printStoresInfo() {
     std::cout << "Function reached 7\n";
     Store *temp;

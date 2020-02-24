@@ -106,6 +106,7 @@ void EmployeeRecord::printRecord() {
     std::cout << "Salary: " << m_dSalary << std::endl;
 }
 
+// returns the pointer to the EmployeeRecord's CustomerList object
 CustomerList *EmployeeRecord::getCustomerList() {
     return m_pCustomerList;
 }
