@@ -1,6 +1,6 @@
 //
 //  CustomerList.cpp
-//  Assignment1
+//  221Project
 //
 //  Created by Kevin Cruse on 2/20/20.
 //  Copyright © 2020 Kevin Cruse. All rights reserved.
@@ -18,12 +18,13 @@ CustomerList::CustomerList() {
 // destructor
 CustomerList::~CustomerList() {
     std::cout << "Function reached 2\n";
-    Store *temp;
-    while(m_pHead != NULL) {
-        temp = m_pHead;
-        m_pHead = m_pHead->m_pNext;
-        delete temp;
-    }
+//    Store *temp;
+//    while(m_pHead != NULL) {
+//        temp = m_pHead;
+//        m_pHead = m_pHead->m_pNext;
+//        delete temp;
+//    }
+    delete m_pHead;
 }
 
 // this function takes a pointer to a Store object which already contains all data on a store. It inserts the Store object into the linked list in order, sorted by the store ID. It returns TRUE if the Store was successfully added to the list.

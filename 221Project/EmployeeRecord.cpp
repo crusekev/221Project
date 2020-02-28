@@ -1,6 +1,6 @@
 //
 //  EmployeeRecord.cpp
-//  Assignment1
+//  221Project
 //
 //  Created by Kevin Cruse on 2/1/20.
 //  Copyright © 2020 Kevin Cruse. All rights reserved.
@@ -56,16 +56,16 @@ void EmployeeRecord::setID(int ID) {
 void EmployeeRecord::getName(char *fName, char *lName) {
     std::cout << "Function reached 6\n";
     // copying the member variables into the pointers in the function args
-    strcpy(m_sFirstName, fName);
-    strcpy(m_sLastName, lName);
+    strcpy(fName, m_sFirstName);
+    strcpy(lName, m_sLastName);
 }
 
 // setter function for the employee's name
 void EmployeeRecord::setName(char *fName, char *lName) {
     std::cout << "Function reached 7\n";
     // copying the function arguments into the member variables
-    fName = m_sFirstName;
-    lName = m_sLastName;
+    strcpy(m_sFirstName, fName);
+    strcpy(m_sLastName, lName);
 }
 
 // reference function, getter for dept id
