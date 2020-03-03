@@ -16,11 +16,11 @@ private:
     Store *m_pHead; // pointer to a class of type CustomerList
 public:
     CustomerList(); // constructor
-    ~CustomerList(); // desctructor
+    ~CustomerList(); // destructor
     CustomerList *getCustomerList();
-    bool addStore(Store *s);
-    Store *removeStore(int ID);
-    Store *getStore(int ID);
-    bool updateStore(int ID, char *name, char *addr, char *city, char *st, char *zip);
+    bool addStore(Store *s); // adds a store to the list
+    Store *removeStore(int ID); // removes store from the list
+    Store *getStore(int ID); // get a store from the list
+    bool updateStore(int ID, char *name, char *addr, char *city, char *st, char *zip); // update a store in the list
     void printStoresInfo(); // this function prints all data on each store in the list
 };

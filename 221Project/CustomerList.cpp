@@ -18,35 +18,44 @@ CustomerList::CustomerList() {
 // destructor
 CustomerList::~CustomerList() {
     std::cout << "Function reached 2\n";
-//    Store *temp;
-//    while(m_pHead != NULL) {
-//        temp = m_pHead;
-//        m_pHead = m_pHead->m_pNext;
-//        delete temp;
-//    }
-    delete m_pHead;
+    // Clear list to free memory
+    Store *temp;
+    // Scan list and free all nodes
+    while(m_pHead != NULL) {
+        temp = m_pHead;
+        m_pHead = m_pHead->m_pNext;
+        delete temp;
+    }
 }
 
 // this function takes a pointer to a Store object which already contains all data on a store. It inserts the Store object into the linked list in order, sorted by the store ID. It returns TRUE if the Store was successfully added to the list.
 bool CustomerList::addStore(Store *s) {
     std::cout << "Function reached 3\n";
     Store *temp, *back, *newNode;
-    newNode = new Store(*s);
+    newNode = new Store(*s); // Create a new node and insert the data
+    // Check if memory allocation failed
+    if(newNode == NULL) {
+        return false;
+    }
     newNode->m_pNext = NULL;
+    // Checking if list is empty
     if (m_pHead == NULL) {
-        m_pHead = newNode;
+        m_pHead = newNode; // Insert new node as fist in list
     }
     else {
+        // Find the location for new node in list
         temp = m_pHead;
         back = NULL;
         while ((temp != NULL) && (temp->getStoreID() < s->getStoreID())) {
             back = temp;
             temp = temp->m_pNext;
         }
+        // Check to see if adding at head of list
         if (back == NULL) {
             newNode->m_pNext = m_pHead;
             m_pHead = newNode;
         }
+        // Insert somewhere in the list
         else {
             back->m_pNext = newNode;
             newNode->m_pNext = temp;
@@ -61,18 +70,20 @@ Store *CustomerList::removeStore(int ID) {
     Store *temp, *back;
     temp = m_pHead;
     back = NULL;
+    // search the list for the item to delete
     while((temp != NULL) && (ID != temp->getStoreID())) {
         back = temp;
         temp = temp->m_pNext;
     }
+    // check to see if the item was found
     if (temp != NULL) {
         if (back == NULL) {
             m_pHead = m_pHead->m_pNext;
-            return temp;
+            return temp; // return removed item
         }
         else {
             back->m_pNext = temp->m_pNext;
-            return temp;
+            return temp; // return removed item
         }
     }
     else {
@@ -85,12 +96,13 @@ Store *CustomerList::getStore(int ID) {
     std::cout << "Function reached 5\n";
     Store *temp;
     temp = m_pHead;
+    // search the list
     while ((temp != NULL) && (ID != temp->getStoreID())) {
         temp = temp->m_pNext;
     }
     if (temp != NULL) {
         Store *copy = new Store;
-        *copy = *temp;
+        *copy = *temp; // block copy entire structure
         copy->m_pNext = NULL;
         copy->printStoreInfo();
         return copy;
@@ -108,6 +120,7 @@ bool CustomerList::updateStore(int ID, char *name, char *addr, char *city, char 
         return false;
     }
     temp = m_pHead;
+    // search the list
     while ((temp != NULL) && (ID != temp->getStoreID())) {
         temp = temp->m_pNext;
     }

@@ -37,7 +37,9 @@ EmployeeRecord::EmployeeRecord(int ID, char *fName, char *lName, int dept, doubl
 // destructor
 EmployeeRecord::~EmployeeRecord() {
     std::cout << "Function reached 3\n";
-    delete m_pCustomerList;
+    while(m_pCustomerList != NULL) {
+        delete m_pCustomerList;
+    }
 }
 
 // getter function for the employee's id
