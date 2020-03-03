@@ -31,15 +31,15 @@ int main() {
 //    employee.setDept(dept);
 //    employee.printRecord();
 //    char fName[32], lName[32];
-    Store *pointer1 = new Store(59, "Friendly", "2402 Viking", "Jasper", "Al", "35501");
-    Store *pointer2 = new Store(198, "ZedHead", "225 Georgia", "Jasper", "Al", "35504");
-    Store *pointer3 = new Store(46, "Ranner", "6500 Walden", "Huntsville", "Al", "35806");
+    Store *pointer1 = new Store(59, (char*)"Friendly", (char*)"2402 Viking", (char*)"Jasper", (char*)"Al", (char*)"35501");
+    Store *pointer2 = new Store(198, (char*)"ZedHead", (char*)"225 Georgia", (char*)"Jasper", (char*)"Al", (char*)"35504");
+    Store *pointer3 = new Store(46, (char*)"Ranner", (char*)"6500 Walden", (char*)"Huntsville", (char*)"Al", (char*)"35806");
     EmployeeRecord *rec1 = new EmployeeRecord();
     rec1->getCustomerList()->addStore(pointer1);
     rec1->getCustomerList()->addStore(pointer2);
     rec1->getCustomerList()->addStore(pointer3);
     rec1->getCustomerList()->printStoresInfo();
-    rec1->getCustomerList()->updateStore(59, "FAS", "2402 Viking", "Jasper", "Al", "35501");
+    rec1->getCustomerList()->updateStore(59, (char*)"FAS", (char*)"2402 Viking", (char*)"Jasper", (char*)"Al", (char*)"35501");
     rec1->getCustomerList()->printStoresInfo();
     rec1->getCustomerList()->getStore(46);
     rec1->getCustomerList()->removeStore(46);
@@ -61,9 +61,9 @@ int main() {
 
     StoreList = new CustomerList;
 
-    Store *ptr1 = new Store(59, "Friendly", "2402 Viking", "Jasper", "Al", "35501");
-    Store *ptr2 = new Store(198, "ZedHead", "225 Georgia", "Jasper", "Al", "35504");
-    Store *ptr3 = new Store(46, "Ranner", "6500 Walden", "Huntsville", "Al", "35806");
+    Store *ptr1 = new Store(59, (char*)"Friendly", (char*)"2402 Viking", (char*)"Jasper", (char*)"Al", (char*)"35501");
+    Store *ptr2 = new Store(198, (char*)"ZedHead", (char*)"225 Georgia", (char*)"Jasper", (char*)"Al", (char*)"35504");
+    Store *ptr3 = new Store(46, (char*)"Ranner", (char*)"6500 Walden", (char*)"Huntsville", (char*)"Al", (char*)"35806");
 
     StoreList->addStore(ptr1);
     StoreList->addStore(ptr2);
@@ -73,7 +73,7 @@ int main() {
 
     cout << "\nChanging Fridendly to FAS" << endl;
 
-    StoreList->updateStore(59, "FAS", "2402 Viking", "Jasper", "Al", "35501");
+    StoreList->updateStore(59, (char*)"FAS", (char*)"2402 Viking", (char*)"Jasper", (char*)"Al", (char*)"35501");
 
     StoreList->printStoresInfo();
 
