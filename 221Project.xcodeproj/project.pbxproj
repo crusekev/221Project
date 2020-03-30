@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7829938924241F8D00078EB2 /* EmployeeDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7829938724241F8D00078EB2 /* EmployeeDatabase.cpp */; };
 		7897E88823FF9111002A6AA1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7897E88723FF9111002A6AA1 /* main.cpp */; };
 		7897E89023FF913A002A6AA1 /* EmployeeRecord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7897E88E23FF913A002A6AA1 /* EmployeeRecord.cpp */; };
 		7897E89323FF9157002A6AA1 /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7897E89123FF9157002A6AA1 /* Store.cpp */; };
@@ -26,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7829938724241F8D00078EB2 /* EmployeeDatabase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EmployeeDatabase.cpp; sourceTree = "<group>"; };
+		7829938824241F8D00078EB2 /* EmployeeDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmployeeDatabase.h; sourceTree = "<group>"; };
 		7897E88423FF9111002A6AA1 /* 221Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 221Project; sourceTree = BUILT_PRODUCTS_DIR; };
 		7897E88723FF9111002A6AA1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7897E88E23FF913A002A6AA1 /* EmployeeRecord.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EmployeeRecord.cpp; sourceTree = "<group>"; };
@@ -67,6 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				7897E88723FF9111002A6AA1 /* main.cpp */,
+				7829938724241F8D00078EB2 /* EmployeeDatabase.cpp */,
+				7829938824241F8D00078EB2 /* EmployeeDatabase.h */,
 				7897E89123FF9157002A6AA1 /* Store.cpp */,
 				7897E89223FF9157002A6AA1 /* Store.h */,
 				7897E89423FF916D002A6AA1 /* CustomerList.cpp */,
@@ -135,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7897E89023FF913A002A6AA1 /* EmployeeRecord.cpp in Sources */,
+				7829938924241F8D00078EB2 /* EmployeeDatabase.cpp in Sources */,
 				7897E88823FF9111002A6AA1 /* main.cpp in Sources */,
 				7897E89323FF9157002A6AA1 /* Store.cpp in Sources */,
 				7897E89623FF916D002A6AA1 /* CustomerList.cpp in Sources */,

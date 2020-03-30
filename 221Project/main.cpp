@@ -13,6 +13,7 @@
 #include "EmployeeRecord.h"
 #include "Store.h"
 #include "CustomerList.h"
+#include "EmployeeDatabase.h"
 
 int main() {
 //    EmployeeRecord *rec1 = new EmployeeRecord();

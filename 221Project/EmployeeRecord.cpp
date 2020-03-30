@@ -37,8 +37,11 @@ EmployeeRecord::EmployeeRecord(int ID, char *fName, char *lName, int dept, doubl
 // destructor
 EmployeeRecord::~EmployeeRecord() {
     std::cout << "Function reached 3\n";
-    while(m_pCustomerList != NULL) {
-        delete m_pCustomerList;
+    if (m_pCustomerList == NULL)
+        destroyCustomerList();
+    else {
+        removeCustomerList();
+        destroyCustomerList();
     }
 }
 
@@ -111,4 +114,15 @@ void EmployeeRecord::printRecord() {
 // returns the pointer to the EmployeeRecord's CustomerList object
 CustomerList *EmployeeRecord::getCustomerList() {
     return m_pCustomerList;
+}
+
+void EmployeeRecord::removeCustomerList() {
+    m_pCustomerList = NULL;
+}
+
+void EmployeeRecord::destroyCustomerList() {
+    if(m_pCustomerList != NULL) {
+        delete m_pCustomerList;
+        m_pCustomerList = NULL;
+    }
 }

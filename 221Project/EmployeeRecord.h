@@ -33,4 +33,7 @@ public:
     void setSalary(double sal);
     void printRecord();
     CustomerList *getCustomerList(); // returns the pointer to the EmployeeRecord's CustomerList object
+    EmployeeRecord *m_pLeft, *m_pRight;
+    void removeCustomerList();
+    void destroyCustomerList();
 };
