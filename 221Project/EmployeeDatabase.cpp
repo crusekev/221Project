@@ -12,16 +12,19 @@
 #include "EmployeeRecord.h"
 
 EmployeeDatabase::EmployeeDatabase() {
+    std::cout << "Constructor function reached\n";
     m_pRoot = NULL;
     return;
 }
 
 EmployeeDatabase::~EmployeeDatabase() {
+    std::cout << "Destructor function reached\n";
     destroyTree(m_pRoot);
     return;
 }
 
 bool EmployeeDatabase::addEmployee(EmployeeRecord *e) {
+    std::cout << "addEmployee function reached\n";
     EmployeeRecord *temp, *back;
     temp = m_pRoot;
     back = NULL;
@@ -49,6 +52,7 @@ bool EmployeeDatabase::addEmployee(EmployeeRecord *e) {
 }
 
 EmployeeRecord *EmployeeDatabase::getEmployee(int ID) {
+    std::cout << "getEmployee function reached\n";
     EmployeeRecord *temp;
     temp = m_pRoot;
     while((temp != NULL) && (temp->getID() != ID)) {
@@ -68,6 +72,7 @@ EmployeeRecord *EmployeeDatabase::getEmployee(int ID) {
 }
 
 EmployeeRecord *EmployeeDatabase::removeEmployee(int ID) {
+    std::cout << "removeEmployee function reached\n";
     EmployeeRecord *temp, *back, *delParent, *delNode;
     temp = m_pRoot;
     back = NULL;
@@ -150,10 +155,12 @@ EmployeeRecord *EmployeeDatabase::removeEmployee(int ID) {
 }
 
 void EmployeeDatabase::printEmployeeRecords() {
+    std::cout << "printEmployeeRecords() function reached\n";
     printEmployeeRecords(m_pRoot);
 }
 
  bool EmployeeDatabase::buildDatabase(char *dataFile) {
+    std::cout << "buildDatabase function reached\n";
     bool OK = true;
     int numEmp, id, dept, numStores, sID;
     double sal;
@@ -236,6 +243,7 @@ void EmployeeDatabase::printEmployeeRecords() {
 }
 
 bool EmployeeDatabase::getNextLine(char *line, int lineLen) {
+    std::cout << "getNextLine function reached\n";
     int    done = false;
     while(!done)
     {
@@ -259,6 +267,7 @@ bool EmployeeDatabase::getNextLine(char *line, int lineLen) {
 }
 
 void EmployeeDatabase::printEmployeeRecords(EmployeeRecord *rt) {
+    std::cout << "printEmployeeRecords(EmployeeRecord *rt) function reached\n";
     if(rt != NULL) {
         printEmployeeRecords(rt->m_pLeft);
         rt->printRecord();
@@ -267,6 +276,7 @@ void EmployeeDatabase::printEmployeeRecords(EmployeeRecord *rt) {
 }
 
 void EmployeeDatabase::destroyTree(EmployeeRecord *rt) {
+    std::cout << "destroyTree function reached\n";
     if(rt == NULL) {
         return;
     }
@@ -281,6 +291,7 @@ void EmployeeDatabase::destroyTree(EmployeeRecord *rt) {
 }
 
 EmployeeRecord *EmployeeDatabase::DupNode(EmployeeRecord *rt) {
+    std::cout << "DupNode function reached\n";
     EmployeeRecord *dupNode = new EmployeeRecord();
     *dupNode = *rt;
     dupNode->m_pLeft = NULL;
