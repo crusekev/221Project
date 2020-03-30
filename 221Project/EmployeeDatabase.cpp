@@ -125,7 +125,6 @@ EmployeeRecord *EmployeeDatabase::removeEmployee(int ID) {
         else {
             EmployeeRecord *retNode = DupNode(delNode);
             retNode->destroyCustomerList();
-            //*retNode = *delNode;
             temp = delNode->m_pLeft;
             back = delNode;
             while(temp->m_pRight != NULL) {

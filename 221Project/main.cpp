@@ -10,6 +10,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <fstream>
 #include "EmployeeRecord.h"
 #include "Store.h"
 #include "CustomerList.h"
