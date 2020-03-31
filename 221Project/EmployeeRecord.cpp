@@ -113,14 +113,17 @@ void EmployeeRecord::printRecord() {
 
 // returns the pointer to the EmployeeRecord's CustomerList object
 CustomerList *EmployeeRecord::getCustomerList() {
+    std::cout << "getCustomerList() function reached\n";
     return m_pCustomerList;
 }
 
 void EmployeeRecord::removeCustomerList() {
+    std::cout << "removeCustomerList() function reached\n";
     m_pCustomerList = NULL;
 }
 
 void EmployeeRecord::destroyCustomerList() {
+    std::cout << "destoryCustomerList() function reached\n";
     if(m_pCustomerList != NULL) {
         delete m_pCustomerList;
         m_pCustomerList = NULL;
