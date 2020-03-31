@@ -11,18 +11,21 @@
 #include "Store.h"
 #include "EmployeeRecord.h"
 
+// Default constructor
 EmployeeDatabase::EmployeeDatabase() {
     std::cout << "Constructor function reached\n";
     m_pRoot = NULL;
     return;
 }
 
+// Destructor
 EmployeeDatabase::~EmployeeDatabase() {
     std::cout << "Destructor function reached\n";
     destroyTree(m_pRoot);
     return;
 }
 
+//  This function will take a pointerto a completed EmployeeRecord object and insert the object into the binary tree
 bool EmployeeDatabase::addEmployee(EmployeeRecord *e) {
     std::cout << "addEmployee function reached\n";
     EmployeeRecord *temp, *back;
@@ -51,6 +54,7 @@ bool EmployeeDatabase::addEmployee(EmployeeRecord *e) {
     return true;
 }
 
+// This function will take an employee ID as an argument. It will search the tree and return a pointer to the employee whose ID matches the function argument. It will return NULL if it fails to find the employee in the tree
 EmployeeRecord *EmployeeDatabase::getEmployee(int ID) {
     std::cout << "getEmployee function reached\n";
     EmployeeRecord *temp;
@@ -67,15 +71,17 @@ EmployeeRecord *EmployeeDatabase::getEmployee(int ID) {
         return NULL;
     }
     else {
-        return temp;
+        return DupNode(temp);
     }
 }
 
+// This function will take an employee ID as an argument. It will search the tree, locate (if it exists) the employee record, remove it from the tree and return it. It will return NULL if it failed to find the employee. Note, care must be taken when the EmployeeRecord removed has twochildren. See the notes below on how to handle this occurance. NOTE: This function was not properly tested and probably has errors when deleting a node that has two children
 EmployeeRecord *EmployeeDatabase::removeEmployee(int ID) {
     std::cout << "removeEmployee function reached\n";
     EmployeeRecord *temp, *back, *delParent, *delNode;
     temp = m_pRoot;
     back = NULL;
+    // Find the node to delete
     while((temp != NULL) && (ID != temp->getID())) {
         back = temp;
         if(ID < temp->getID()) {
@@ -85,14 +91,18 @@ EmployeeRecord *EmployeeDatabase::removeEmployee(int ID) {
             temp = temp->m_pRight;
         }
     }
+    // Didn't find the one to delete
     if(temp == NULL) {
         return NULL;
     }
     else {
+        // Use these pointers in case we need to reuse temp and back below
         delNode = temp;
         delParent = back;
     }
+    // Case 1: Deleting node with no children or one child
     if(delNode->m_pRight == NULL) {
+        // If deleting root
         if(delParent == NULL) {
             m_pRoot = delNode->m_pLeft;
             delNode->m_pLeft = NULL;
@@ -109,8 +119,11 @@ EmployeeRecord *EmployeeDatabase::removeEmployee(int ID) {
             return delNode;
         }
     }
+    // There is at least one child
     else {
+        // Only 1 child and it is on the right
         if(delNode->m_pLeft == NULL) {
+            // Deleting the root
             if(delParent == NULL) {
                 m_pRoot = delNode->m_pRight;
                 delNode->m_pRight = NULL;
@@ -127,38 +140,45 @@ EmployeeRecord *EmployeeDatabase::removeEmployee(int ID) {
                 return delNode;
             }
         }
+        // Deleting node with two children
         else {
+            // Make a copy of the node to be "deleted" for returning after overwriting delNode
             EmployeeRecord *retNode = DupNode(delNode);
             retNode->destroyCustomerList();
+            // Find the replacement value. Locate the node containing the largest value smaller than the key of the node to be deleted
             temp = delNode->m_pLeft;
             back = delNode;
             while(temp->m_pRight != NULL) {
                 back = temp;
                 temp = temp->m_pRight;
             }
+            // Copy the replacement values into the node to be "deleted"
             char *fName = new char[32];
             char *lName = new char[32];
             m_pRoot->getName(fName, lName);
             delNode = new EmployeeRecord(m_pRoot->getID(), fName, lName, m_pRoot->getDept(), m_pRoot->getSalary());
             m_pRoot->getCustomerList();
             m_pRoot->removeCustomerList();
+            // Remove the replacement node from the tree
             if(back == delNode) {
                 back->m_pLeft = delNode->m_pLeft;
             }
             else {
                 back->m_pRight = temp->m_pLeft;
             }
-            delete temp;
-            return retNode;
+            delete temp; // Dispose of this node
+            return retNode; // Return the copy
         }
     }
 }
 
+// This function shall call the private printEmployeeRecords() function passing in the root of the tree. This shall initialize a recursive traversal to print all records in the tree
 void EmployeeDatabase::printEmployeeRecords() {
     std::cout << "printEmployeeRecords() function reached\n";
     printEmployeeRecords(m_pRoot);
 }
 
+// This function shall take a char array specifying the name of the data file. It will read and build the database. This functionis provided by the instructor
  bool EmployeeDatabase::buildDatabase(char *dataFile) {
     std::cout << "buildDatabase function reached\n";
     bool OK = true;
@@ -266,6 +286,7 @@ bool EmployeeDatabase::getNextLine(char *line, int lineLen) {
     return false;
 }
 
+// This function overloads the public printEmployeeRecords() function and shall perform an in-order recursive traversal of the entire tree and print all data on all employees in the database
 void EmployeeDatabase::printEmployeeRecords(EmployeeRecord *rt) {
     std::cout << "printEmployeeRecords(EmployeeRecord *rt) function reached\n";
     if(rt != NULL) {
@@ -275,6 +296,7 @@ void EmployeeDatabase::printEmployeeRecords(EmployeeRecord *rt) {
     }
 }
 
+// This function shall recursively traverse the entire tree and delete all nodes in the tree
 void EmployeeDatabase::destroyTree(EmployeeRecord *rt) {
     std::cout << "destroyTree function reached\n";
     if(rt == NULL) {
@@ -290,6 +312,7 @@ void EmployeeDatabase::destroyTree(EmployeeRecord *rt) {
     return;
 }
 
+// Duplicate a node in the tree.  This is used to allow returning a complete structure from the tree without giving        access into the tree through the pointers
 EmployeeRecord *EmployeeDatabase::DupNode(EmployeeRecord *rt) {
     std::cout << "DupNode function reached\n";
     EmployeeRecord *dupNode = new EmployeeRecord();
